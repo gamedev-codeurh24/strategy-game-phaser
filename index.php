@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="icon" type="image/png" href="assets/img/icon.png" />
     <script src="assets/js/external/phaser.min.js"></script>
     <script src="GUI.js"></script>
 </head>

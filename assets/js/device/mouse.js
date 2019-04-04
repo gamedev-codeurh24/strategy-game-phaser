@@ -20,7 +20,7 @@ let Mouse = {
     }, this);
 
     this.input.on('pointerdown', (pointer) => {
-
+      // ACTION SANS LE CLIQUE GAUCHE
       if (!pointer.rightButtonDown()) {
         if (window.keyControl == false) {
           for (let index = 0; index < window.selectedUnits.length; index++) {
@@ -32,11 +32,28 @@ let Mouse = {
         return false;
       }
 
-
+      // DEPLACEMENT UNITE
       var n = this.unit.length;
       if (n > 0) {
-        this.target.x = (pointer.x)+this.cameras.main.scrollX;
-        this.target.y = (pointer.y)+this.cameras.main.scrollY;
+
+        window.canvas = document.getElementsByTagName("canvas")[0];
+        var wRef = window.canvas.width;
+        // vue cam reduite par le zoom
+        var wInferrieur = wRef*this.cameras.main.zoom;
+        // nouvelle vue plus large fait:
+        var coefSupperieur = wRef/wInferrieur;
+
+        var wNew = window.canvas.width*coefSupperieur;
+        console.log('wRef: '+wRef+' ,wNew: '+wNew    );
+
+        this.target.x = (pointer.x*coefSupperieur)+window._camSX;
+        this.target.y = (pointer.y*coefSupperieur)+window._camSY;
+        
+        this.target.x = parseInt(this.target.x);
+        this.target.y = parseInt(this.target.y);
+        console.log('info camSX: '+window._camSX);
+        console.log('info scrollX: '+this.cameras.main.scrollX);
+        
         for (let index = 0; index < n; index++) {
           if (this.unit[index].addon.selectEnable.visible) {
             var angleRad = this.physics.moveToObject(this.unit[index], this.target, 200);

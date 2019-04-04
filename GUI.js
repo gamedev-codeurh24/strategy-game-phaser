@@ -7,7 +7,7 @@ let GUI = {
       fill: '#fff'
     };
     
-    //this.scoreText = this.add.text(20, 20, 'score: ', style);
+    this.scoreText = this.add.text(20, 20, 'score: ', style);
   }
 }    
     

@@ -45,21 +45,24 @@ class MainScene {
     /* CANVAS */
 
     // recupere el canvas qui fait le rendu du jeu
-    var canvas = document.getElementsByTagName("canvas")[0];
+    window.canvas = document.getElementsByTagName("canvas")[0];
     // Redimentionne la taille du rendu a la largeur de la 
     // fenetre interne de l'ecran
-    Object.assign(canvas.style, {
-      width: window.innerWidth + 'px',
-      margin: 'auto'
-    });
+    // Object.assign(canvas.style, {
+    //   width: window.innerWidth + 'px',
+    //   margin: 'auto'
+    // });
 
+    /* SOURIS */
+    this.mouse.x = window.canvas.width / 2;
+    this.mouse.y = window.canvas.heigth / 2;
     /* MENU CONTECTUEL */
 
     /* Menu contextuel du clique droit de la souris désactivé  */
     this.input.mouse.disableContextMenu();
     
     /* CAMERA  */
-
+    
     // augmente les limites des bords habituel de l'ecran
     this.cameras.main.setBounds(0, 0, 1920 * 10, 1080 * 10);
     this.physics.world.setBounds(0, 0, 1920 * 10, 1080 * 10);
@@ -84,10 +87,10 @@ class MainScene {
     this.shape();
     
     // Unitées dans le jeu
-    this.createUnit(100, 100, 1);
-    this.createUnit(100, 200, 1);
-    this.createUnit(100, 300, 1);
-    this.createUnit(400, 200, 2);
+    this.createUnit(30, 100, 1);
+    this.createUnit(30, 200, 1);
+    this.createUnit(30, 300, 1);
+    this.createUnit(700, 200, 2);
 
 
     /*##############################
